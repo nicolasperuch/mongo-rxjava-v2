@@ -12,8 +12,8 @@ public class PaymentResponse extends BaseEntity {
     private String terminalDate;
     private String terminalReq;
 
-    public PaymentResponse(String id, Date creationDate, String idTransaction, String status) {
-        super(id, creationDate, idTransaction, status);
+    public PaymentResponse(Date creationDate, String idTransaction, String status) {
+        super(creationDate, idTransaction, status);
     }
 
     public String getNsa() {

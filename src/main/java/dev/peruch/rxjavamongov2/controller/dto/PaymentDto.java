@@ -1,15 +1,12 @@
 package dev.peruch.rxjavamongov2.controller.dto;
 
-import java.util.Date;
-
 public class PaymentDto {
 
     private String specialCode;
     private String cpf;
     private String nsa;
-    private Date date;
+    private String date;
     private String value;
-
 
     public String getSpecialCode() {
         return specialCode;
@@ -35,11 +32,11 @@ public class PaymentDto {
         this.nsa = nsa;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

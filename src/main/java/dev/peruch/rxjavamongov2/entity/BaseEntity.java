@@ -14,10 +14,17 @@ public abstract class BaseEntity {
     private String idTransaction;
     private String status;
 
-    public BaseEntity(String id, Date creationDate, String idTransaction, String status) {
-        this.id = id;
+    public BaseEntity(Date creationDate, String idTransaction, String status) {
         this.creationDate = creationDate;
         this.idTransaction = idTransaction;
         this.status = status;
+    }
+
+    public String getIdTransaction() {
+        return idTransaction;
+    }
+
+    public String getStatus() {
+        return status;
     }
 }
