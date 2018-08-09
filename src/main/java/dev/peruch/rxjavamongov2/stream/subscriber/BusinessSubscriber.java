@@ -2,7 +2,7 @@ package dev.peruch.rxjavamongov2.stream.subscriber;
 
 import dev.peruch.rxjavamongov2.entity.BaseEntity;
 import dev.peruch.rxjavamongov2.entity.Payment;
-import dev.peruch.rxjavamongov2.entity.PaymentResponse;
+import dev.peruch.rxjavamongov2.entity.PaymentExternalResponse;
 import dev.peruch.rxjavamongov2.stream.TransacaoSubject;
 import org.springframework.stereotype.Component;
 
@@ -26,9 +26,9 @@ public class BusinessSubscriber {
         return event.getStatus().equalsIgnoreCase("ACCEPTED PAYMENT");
     }
 
-    public PaymentResponse callExternalService(Object baseEntity){
+    public PaymentExternalResponse callExternalService(Object baseEntity){
         //call external services here
-        PaymentResponse response = new PaymentResponse(new Date(),
+        PaymentExternalResponse response = new PaymentExternalResponse(new Date(),
                                     ((Payment) baseEntity).getIdTransaction(),
                                     "COMPLETED PAYMENT" );
         response.setAmountEstablishments(new BigDecimal(7));

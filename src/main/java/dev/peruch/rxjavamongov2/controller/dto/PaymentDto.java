@@ -1,50 +1,38 @@
 package dev.peruch.rxjavamongov2.controller.dto;
 
+import dev.peruch.rxjavamongov2.validator.annotation.Evaluate;
+
 public class PaymentDto {
 
+    @Evaluate(codigo = "1", message = "Invalid special code")
     private String specialCode;
+    @Evaluate(codigo = "2", message = "Invalid cpf")
     private String cpf;
+    @Evaluate(codigo = "3", message = "Invalid nsa")
     private String nsa;
+    @Evaluate(codigo = "4", message = "Invalid date")
     private String date;
+    @Evaluate(codigo = "5", message = "Invalid value")
     private String value;
 
     public String getSpecialCode() {
         return specialCode;
     }
 
-    public void setSpecialCode(String specialCode) {
-        this.specialCode = specialCode;
-    }
-
     public String getCpf() {
         return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
     }
 
     public String getNsa() {
         return nsa;
     }
 
-    public void setNsa(String nsa) {
-        this.nsa = nsa;
-    }
-
     public String getDate() {
         return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
     }
 
     public String getValue() {
         return value;
     }
 
-    public void setValue(String value) {
-        this.value = value;
-    }
 }
