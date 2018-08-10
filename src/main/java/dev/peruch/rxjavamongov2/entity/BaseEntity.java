@@ -14,6 +14,8 @@ public abstract class BaseEntity {
     private String idTransaction;
     private String status;
 
+    public BaseEntity() {}
+
     public BaseEntity(Date creationDate, String idTransaction, String status) {
         this.creationDate = creationDate;
         this.idTransaction = idTransaction;
@@ -27,4 +29,5 @@ public abstract class BaseEntity {
     public String getStatus() {
         return status;
     }
+
 }

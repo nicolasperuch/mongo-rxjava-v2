@@ -10,20 +10,36 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 @Component
-public class BusinessSubscriber {
+public class PaymentSubscriber {
 
-    private BusinessSubscriber() {
+    private PaymentSubscriber() {
         TransacaoSubject
                 .getTransacaoSubject()
                 .filter(e -> isPaymentAccepted(e))
-                .subscribe(e -> TransacaoSubject
-                                        .getTransacaoSubject()
-                                        .onNext(callExternalService(e)));
+                .subscribe(e -> {
+                    TransacaoSubject
+                            .getTransacaoSubject()
+                            .onNext(changeActualStatus(e));
+
+                    TransacaoSubject
+                            .getTransacaoSubject()
+                            .onNext(callExternalService(e));
+                });
     }
 
     public Boolean isPaymentAccepted(Object baseEntity){
         BaseEntity event = (BaseEntity) baseEntity;
         return event.getStatus().equalsIgnoreCase("ACCEPTED PAYMENT");
+    }
+
+    public BaseEntity changeActualStatus(Object event){
+        Payment payment = new Payment(new Date(), ((Payment)event).getIdTransaction(), "PAYMENT IN PROGRESS");
+        payment.setCpf(((Payment)event).getCpf());
+        payment.setDate(((Payment)event).getDate());
+        payment.setNsa(((Payment)event).getNsa());
+        payment.setSpecialCode(((Payment)event).getSpecialCode());
+        payment.setValue(((Payment)event).getValue());
+        return payment;
     }
 
     public PaymentExternalResponse callExternalService(Object baseEntity){
